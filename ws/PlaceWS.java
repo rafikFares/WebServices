@@ -17,12 +17,11 @@ import java.util.List;
 @Path("/app/place")
 public class PlaceWS {
 
-    private PlaceResource value;
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{placeId}")
     public Response getPlaceById(@PathParam("placeId") String placeId) {
+        PlaceResource value;
         value = DAOFactory.getPlaceDAO().findById(placeId);
 
         if (value != null)
@@ -81,6 +80,7 @@ public class PlaceWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/update")
     public Response updatePlace(PlaceResource place) {
+        PlaceResource value;
         value = DAOFactory.getPlaceDAO().update(place, place.getPlaceId());
 
         if (value != null)
@@ -93,6 +93,7 @@ public class PlaceWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/delete")
     public Response deletePlace(PlaceResource place) {
+        PlaceResource value;
         value = DAOFactory.getPlaceDAO().update(place, place.getPlaceId());
 
         if (value != null)

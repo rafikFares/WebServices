@@ -11,14 +11,11 @@ import java.util.List;
 @Path("/app/accounts")
 public class AccountWS {
 
-    private AccountResource value;
-    private List<String> values;
-    private String strValue;
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{regex}/search")
     public Response search(@PathParam("regex") String regex) {
+    	String strValue;
         strValue = DAOFactory.getAccountDAO().find(regex).getUsername();
 
         if (strValue != null) {
@@ -31,6 +28,7 @@ public class AccountWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{regex}/searchFuzzy")
     public Response searchFuzzy(@PathParam("regex") String regex) {
+    	List<String> values;
         values = DAOFactory.getAccountDAO().findByRegex(regex);
 
         if (values != null) {
@@ -43,6 +41,7 @@ public class AccountWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/update")
     public Response updateAccount(@PathParam("username") String username, AccountResource account) {
+    	AccountResource value;
         String id = DAOFactory.getAccountDAO().getId(username);
 
         if (id != null) {
@@ -57,6 +56,7 @@ public class AccountWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}")
     public Response deleteAccount(@PathParam("username") String username, String password) {
+    	AccountResource value;
         value = DAOFactory.getAccountDAO().find(username);
 
         if (value != null) {
@@ -89,6 +89,7 @@ public class AccountWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/followers")
     public Response getMyFollowers(@PathParam("username") String username) {
+    	List<String> values;
         String id = DAOFactory.getAccountDAO().getId(username);
 
         if (id != null) {
@@ -103,6 +104,7 @@ public class AccountWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/subscriptionsId")
     public Response getMySubscriptionsId(@PathParam("username") String username) {
+    	String strValue;
         String id = DAOFactory.getAccountDAO().getId(username);
 
         if (id != null) {
@@ -117,6 +119,7 @@ public class AccountWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/subscriptions")
     public Response getMySubscriptions(@PathParam("username") String username) {
+    	List<String> values;
         String id = DAOFactory.getAccountDAO().getId(username);
 
         if (id != null) {

@@ -10,8 +10,6 @@ import javax.ws.rs.core.Response;
 @Path("/register")
 public class RegisterWS {
 
-    private AccountResource value;
-
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/add")

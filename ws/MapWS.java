@@ -9,9 +9,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/app/maps")
-public class MapWS {
-
-    private List<MapResource> value;
+public class MapWS { 
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -29,6 +27,7 @@ public class MapWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}")
     public Response getMyMaps(@PathParam("username") String username) {
+        List<MapResource> value;
         value = DAOFactory.getMapDAO().getMyMapsByUsername(username);
 
         if (value != null)
@@ -41,6 +40,7 @@ public class MapWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/sharedMapsOfMyFriends")
     public Response sharedAndPublicMapsOfMyFriends(@PathParam("username") String username) {
+        List<MapResource> value;
         value = DAOFactory.getMapDAO().sharedAndPublicMapsOfMyFriends(username);
         if (value != null)
             return Response.status(200).entity(value).build();
@@ -51,6 +51,7 @@ public class MapWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/{myAccount}/sharedMapsOfSomeone")
     public Response sharedMapsOfSomeone(@PathParam("username") String username, @PathParam("myAccount") String me) {
+        List<MapResource> value;
         value = DAOFactory.getMapDAO().mapsOfSomeoneByStatut(username, me, 2);
         if (value != null)
             return Response.status(200).entity(value).build();
@@ -61,6 +62,7 @@ public class MapWS {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/publicMapsOfSomeone")
     public Response publicMapsOfSomeone(@PathParam("username") String username) {
+        List<MapResource> value;
         value = DAOFactory.getMapDAO().mapsOfSomeoneByStatut(username, null, 0);
         if (value != null)
             return Response.status(200).entity(value).build();
